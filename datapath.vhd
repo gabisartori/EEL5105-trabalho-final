@@ -6,9 +6,9 @@ entity datapath is port(
 
     SW: in std_logic_vector(17 downto 0);
     CLK: in std_logic;
-	 Enter_left, Enter_right: in std_logic;
+	Enter_left, Enter_right: in std_logic;
     R1, E1, E2, E3, E4, E5, E6: in std_logic;
-	 end_game, end_sequence, end_round, end_left, end_right: out std_logic;
+	end_game, end_sequence, end_round, end_left, end_right: out std_logic;
     HEX7, HEX6, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0: out std_logic_vector(6 downto 0);
     LEDR: out std_logic_vector(17 downto 0));
 
@@ -49,12 +49,14 @@ component decoder_termometrico is port(
     
 end component;
 
-component Div_Freq_Emu is
-	port (	clk: in std_logic;
-			reset: in std_logic;
-			CLK_1Hz: out std_logic;
-			Sim_1Hz: out std_logic);
-end component;
+component Div_Freq_Emu is port (
+    
+    clk: in std_logic;
+	reset: in std_logic;
+	CLK_1Hz: out std_logic;
+	Sim_1Hz: out std_logic);
+
+    end component;
 
 component DecBCD is port (
 
