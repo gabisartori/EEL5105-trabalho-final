@@ -50,20 +50,28 @@ component decoder_termometrico is port(
     
 end component;
 
+component DecBCD is port(
+
+    input: in  std_logic_vector(7 downto 0);
+    output: out std_logic_vector(7 downto 0)
+    );
+
+end component;
+
+component Decod7seg is port(
+
+	input: in  std_logic_vector(3 downto 0);
+	output: out std_logic_vector(6 downto 0)
+    );
+
+end component;
+
 component Div_Freq_Emu is port(
     
     clk: in std_logic;
 	reset: in std_logic;
 	CLK_1Hz: out std_logic;
 	Sim_1Hz: out std_logic
-    );
-
-end component;
-
-component DecBCD is port(
-
-	input: in  std_logic_vector(7 downto 0);
-	output: out std_logic_vector(7 downto 0)
     );
 
 end component;
@@ -96,14 +104,6 @@ component ROM3 is port (
 
     address: in  std_logic_vector(3 downto 0);
     data: out std_logic_vector(79 downto 0)
-    );
-    
-end component;
-
-component Comparador is port(
-    
-    in0, in1: in  std_logic_vector(7 downto 0);
-    S: out std_logic
     );
     
 end component;
@@ -153,14 +153,6 @@ component Mux4_1x80 is port(
     
 end component Mux4_1x80;
 
-component Decod7seg is port(
-
-	input: in  std_logic_vector(3 downto 0);
-	output: out std_logic_vector(6 downto 0)
-    );
-
-end component;
-
 ------------------------completar os components que faltam------------------------------
 
 component Comparador is port(
@@ -169,13 +161,6 @@ component Comparador is port(
 );
 end component;
 
-component Contador is port(
-    CLK: in std_logic;
-    SET: in std_logic;
-    E: in std_logic;
-    Y: out std_logic_vector(7 downto 0)
-);
-end component;
 
 component Registrador16 is port(
     CLK, RST, ENABLE: in std_logic;
@@ -188,6 +173,28 @@ component Registrador4 is port(
     CLK, RST, ENABLE: in std_logic;
     valor_proximo: in std_logic_vector(3 downto 0);
     valor: out std_logic_vector(3 downto 0)
+);
+end component;
+
+component ContadorRound is port(
+    SET15, ENABLE, CLK: in std_logic;
+    CONT: out std_logic_vector(3 downto 0);
+    ZERO: out std_logic
+);
+end component;
+
+component ContadorSeq is port(
+    RESET, ENABLE, CLK: in std_logic;
+    CONT: out std_logic_vector(1 downto 0);
+    FOUR: out std_logic
+);
+end component;
+
+component ContadorTempo is port(
+    SET99, ENABLE, CLK: in std_logic;
+    STEP: in std_logic_vector(7 downto 0);
+    CONT: out std_logic_vector(7 downto 0);
+    NEG: out std_logic
 );
 end component;
 
