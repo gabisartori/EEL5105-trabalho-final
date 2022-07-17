@@ -2,15 +2,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.std_logic_signed.all;
 
-entity ContadorTempo is port(
+entity ContadorRound is port(
     SET15, ENABLE, CLK: in std_logic;
     CONT: out std_logic_vector(3 downto 0);
     ZERO: out std_logic
     );
 
-end ContadorTempo;
+end ContadorRound;
 
-architecture rtl of ContadorTempo is
+architecture rtl of ContadorRound is
     signal sls, teste: std_logic_vector(3 downto 0);
     
     component Registrador4_set15 is port(
