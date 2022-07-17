@@ -40,6 +40,11 @@ signal SWleft, SWRight: std_logic_vector(15 downto 0);
 
 signal left_penalty, right_penalty: std_logic_vector(7 downto 0);
 
+
+-- Meus signals
+signal enable_left_time_counter, enable_right_time_counter: std_logic;
+signal load_step_left, load_step_right: std_logic_vector(7 downto 0);
+signal mx_penalty_left_value, mx_penalty_right_value: std_logic_vector(7 downto 0);
 ----- components
 
 component decoder_termometrico is port(
@@ -200,6 +205,19 @@ end component;
 
 begin
 
+---- Muxes LEDR
+
+sel_mxledr <= (E5 or E6) & ((E2 and not(X(0))) or E6);
+mx_time_left <= pisca when end_time_left = '0' else "000000000";
+mx_time_right <= pisca when end_time_right = '0' else "000000000";
+
+
+mx_sqoutl <= seq_out_left & '0';
+mx_sqoutr <= '0' & seq_out_right;
+mx_trm <= "00" & termo(15 downto 9);
+mxlrmsb: Mux4_1x9 port map(sel_mxledr, "000000000", mx_sqoutl, mx_trm, mx_time_left, LEDR(17 downto 9));
+mxlrlsb: Mux4_1x9 port map(sel_mxledr, "000000000", mx_sqoutr, termo(8 downto 0), mx_time_right, LEDR(8 downto 0));
+
 ------ HEX ----------------------------
 
 E2_and_X0 <= E2 and X(0);
@@ -261,19 +279,6 @@ ROM_1: ROM1 port map(X, saida_rom1);
 ROM_2: ROM2 port map(X, saida_rom2);
 ROM_3: ROM3 port map(X, saida_rom3);
 
----- Muxes LEDR
-
-sel_mxledr <= (E5 or E6) & ((E2 and not(X(0))) or E6);
-mx_time_left <= pisca when end_time_left = '0' else "000000000";
-mx_time_right <= pisca when end_time_right = '0' else "000000000";
-
-
-mx_sqoutl <= seq_out_left & '0';
-mx_sqoutr <= '0' & seq_out_right;
-mx_trm <= "00" & termo(15 downto 9);
-mxlrmsb: Mux4_1x9 port map(sel_mxledr, "000000000", mx_sqoutl, mx_trm, mx_time_left, LEDR(17 downto 9));
-mxlrlsb: Mux4_1x9 port map(sel_mxledr, "000000000", mx_sqoutr, termo(8 downto 0), mx_time_right, LEDR(8 downto 0));
-
 
 ---- Sinais/Entradas logicas
 
@@ -284,6 +289,17 @@ end_right <= Enter_right; --mas no resto do projeto continuam sendo Enter_left e
 
 ------------------------------------ FAZER ----------------------------------------
 
+---------- Contadores ----------
+
+-- Contador de tempo da esquerda
+enable_left_time_counter <= E4 or (not enter_left and E3 and CLK);
+
+mx_penalty_left: mux2_1x8 port map(Control_left, penalty, "00000000", mx_penalty_left_value);
+mx_load_step_left: mux2_1x8 port map(E4, "11111111", mx_penalty_left_value, load_step_left);
+
+left_time_counter: ContadorTempo port map
+
+-- Contador de tempo da direita
 
 
-end arc_Data;
+end arc_data;
