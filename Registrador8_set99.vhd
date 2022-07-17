@@ -13,7 +13,7 @@ begin
   process(CLK,RST)
     begin
         if (RST = '1') then
-            Q <= "00000000";
+            Q <= "01100011";
         elsif (CLK'event and CLK = '1' and ENABLE = '1') then
             Q <= D;
         end if;
