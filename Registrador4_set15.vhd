@@ -1,13 +1,13 @@
 library IEEE;
 use IEEE.Std_Logic_1164.all;
-entity Registrador4 is port (
+entity Registrador4_set15 is port (
     CLK, RST, ENABLE: in std_logic;
     valor_proximo: in std_logic_vector(3 downto 0);
     valor: out std_logic_vector(3 downto 0)
     );
-end Registrador4;
+end Registrador4_set15;
 
-architecture Registrador4ARCH of Registrador4 is
+architecture Registrador4_set15ARCH of Registrador4_set15 is
     
 begin 
   process(CLK,RST)
@@ -19,4 +19,4 @@ begin
         end if;
     end process;
  
-end Registrador4ARCH;
+end Registrador4_set15ARCH;

@@ -297,7 +297,7 @@ enable_left_time_counter <= E4 or (not enter_left and E3 and CLK);
 mx_penalty_left: mux2_1x8 port map(Control_left, penalty, "00000000", mx_penalty_left_value);
 mx_load_step_left: mux2_1x8 port map(E4, "11111111", mx_penalty_left_value, load_step_left);
 
-left_time_counter: ContadorTempo port map
+left_time_counter: ContadorTempo port map(R1, enable_left_time_counter, CLK, load_step_left, T_left_out, end_time_left);
 
 -- Contador de tempo da direita
 

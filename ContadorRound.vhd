@@ -11,7 +11,7 @@ entity ContadorRound is port(
 end ContadorRound;
 
 architecture rtl of ContadorRound is
-    signal sls, teste: std_logic_vector(3 downto 0);
+    signal prox, atual: std_logic_vector(3 downto 0);
     
     component Registrador4_set15 is port(
     CLK, RST, ENABLE: in std_logic;
@@ -21,9 +21,9 @@ architecture rtl of ContadorRound is
     end component;
 
 begin
-    sls <= teste - '1';
-    meu_contador: Registrador8 port map (CLK, SET15, ENABLE, sls, teste);
+    prox <= atual - '1';
+    meu_contador: Registrador4_set15 port map (CLK, SET15, ENABLE, prox, atual);
 
-    CONT <= teste;
-    ZERO <= not(teste(0) or teste(1) or teste(2) or teste(3));
+    CONT <= atual;
+    ZERO <= not(atual(0) or atual(1) or atual(2) or atual(3));
 end rtl;
