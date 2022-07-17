@@ -14,7 +14,7 @@ end ContadorTempo;
 architecture rtl of ContadorTempo is
     signal sls, teste: std_logic_vector(7 downto 0);
     
-    component Registrador8 is port (
+    component Registrador8 is port(
     CLK, RST, ENABLE: in std_logic;
     D: in std_logic_vector(7 downto 0);
     Q: out std_logic_vector(7 downto 0)
@@ -28,4 +28,5 @@ begin
     meu_contador: Registrador8 port map (CLK, SET99, ENABLE, sls, teste);
 
     CONT <= teste;
+    NEG <= teste(7);
 end rtl;
