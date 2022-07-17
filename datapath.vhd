@@ -45,82 +45,93 @@ signal left_penalty, right_penalty: std_logic_vector(7 downto 0);
 component decoder_termometrico is port(
     
     X: in  std_logic_vector(3 downto 0);
-    S: out std_Logic_vector(15 downto 0));
+    S: out std_Logic_vector(15 downto 0)
+    );
     
 end component;
 
-component Div_Freq_Emu is port (
+component Div_Freq_Emu is port(
     
     clk: in std_logic;
 	reset: in std_logic;
 	CLK_1Hz: out std_logic;
-	Sim_1Hz: out std_logic);
-
-    end component;
-
-component DecBCD is port (
-
-	input  : in  std_logic_vector(7 downto 0);
-	output : out std_logic_vector(7 downto 0));
+	Sim_1Hz: out std_logic
+    );
 
 end component;
 
-component ROM0 is port (
+component DecBCD is port(
 
-    address : in  std_logic_vector(3 downto 0);
-    data    : out std_logic_vector(79 downto 0));
+	input: in  std_logic_vector(7 downto 0);
+	output: out std_logic_vector(7 downto 0)
+    );
+
+end component;
+
+component ROM0 is port(
+
+    address: in  std_logic_vector(3 downto 0);
+    data: out std_logic_vector(79 downto 0)
+    );
     
 end component;
 
-component ROM1 is port (
+component ROM1 is port(
 
-    address : in  std_logic_vector(3 downto 0);
-    data    : out std_logic_vector(79 downto 0));
+    address: in  std_logic_vector(3 downto 0);
+    data: out std_logic_vector(79 downto 0)
+    );
     
 end component;
 
 component ROM2 is port (
 
-    address : in  std_logic_vector(3 downto 0);
-    data    : out std_logic_vector(79 downto 0));
+    address: in  std_logic_vector(3 downto 0);
+    data: out std_logic_vector(79 downto 0)
+    );
     
 end component;
 
 component ROM3 is port (
 
-    address : in  std_logic_vector(3 downto 0);
-    data    : out std_logic_vector(79 downto 0));
+    address: in  std_logic_vector(3 downto 0);
+    data: out std_logic_vector(79 downto 0)
+    );
     
 end component;
 
 component Comparador is port(
     
     in0, in1: in  std_logic_vector(7 downto 0);
-    S       : out std_logic);
+    S: out std_logic
+    );
     
 end component;
 
 component Mux2_1x4 is port(
 
-    S     : in  std_logic;
+    S: in  std_logic;
     L0, L1: in  std_logic_vector(3 downto 0);
-    D     : out std_logic_vector(3 downto 0));
+    D: out std_logic_vector(3 downto 0)
+    );
     
 end component;
 
 component Mux2_1x8 is port(
 
-    S     : in  std_logic;
+    S: in  std_logic;
     L0, L1: in  std_logic_vector(7 downto 0);
-    D     : out std_logic_vector(7 downto 0));
+    D: out std_logic_vector(7 downto 0)
+    );
     
 end component;
 
 component Mux4_1x8 is port(
 
-    S             : in  std_logic_vector(1 downto 0);
+    S: in  std_logic_vector(1 downto 0);
     L0, L1, L2, L3: in  std_logic_vector(7 downto 0);
-    D             : out std_logic_vector(7 downto 0));
+    D: out std_logic_vector(7 downto 0)
+    );
     
 end component;
 
@@ -128,7 +139,8 @@ component Mux4_1x9 is port(
 
     S: in std_logic_vector(1 downto 0);
     L0, L1, L2, L3: in std_logic_vector(8 downto 0);
-    D: out std_logic_vector(8 downto 0));
+    D: out std_logic_vector(8 downto 0)
+    );
     
 end component;
 
@@ -136,18 +148,48 @@ component Mux4_1x80 is port(
 
     S: in std_logic_vector(1 downto 0);
     L0, L1, L2, L3: in std_logic_vector(79 downto 0);
-    D: out std_logic_vector(79 downto 0));
+    D: out std_logic_vector(79 downto 0)
+    );
     
 end component Mux4_1x80;
 
-component decod7seg is port (
+component Decod7seg is port(
 
-	input  : in  std_logic_vector(3 downto 0);
-	output : out std_logic_vector(6 downto 0));
+	input: in  std_logic_vector(3 downto 0);
+	output: out std_logic_vector(6 downto 0)
+    );
 
 end component;
 
 ------------------------completar os components que faltam------------------------------
+
+component Comparador is port(
+    A, B: in std_logic_vector(7 downto 0);
+    Y:  out std_logic_vector(7 downto 0)
+);
+end component;
+
+component Contador is port(
+    CLK: in std_logic;
+    SET: in std_logic;
+    E: in std_logic;
+    Y: out std_logic_vector(7 downto 0)
+);
+end component;
+
+component Registrador16 is port(
+    CLK, RST, ENABLE: in std_logic;
+    valor_proximo: in std_logic_vector(15 downto 0);
+    valor: out std_logic_vector(15 downto 0)
+);
+end component;
+
+component Registrador4 is port(
+    CLK, RST, ENABLE: in std_logic;
+    valor_proximo: in std_logic_vector(3 downto 0);
+    valor: out std_logic_vector(3 downto 0)
+);
+end component;
 
 begin
 

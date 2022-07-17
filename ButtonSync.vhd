@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 entity ButtonSync is port(
 
     KEY1, KEY0, CLK: in  std_logic;
-    BTN1, BTN0   : out std_logic);
+    BTN1, BTN0: out std_logic);
 
 end ButtonSync;
 
