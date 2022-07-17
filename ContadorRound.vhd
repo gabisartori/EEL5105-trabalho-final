@@ -6,7 +6,7 @@ entity ContadorRound is port(
     SET15, ENABLE, CLK: in std_logic;
     CONT: out std_logic_vector(3 downto 0);
     ZERO: out std_logic
-    );
+);
 
 end ContadorRound;
 
