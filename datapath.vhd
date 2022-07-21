@@ -360,8 +360,26 @@ comparador_left: Comparador port map(play_left(7 downto 0), play_left(15 downto 
 -- Comparador direito
 comparador_right: Comparador port map(play_right(7 downto 0), play_right(15 downto 8), control_right);
 
----------- Leitura das memórias ----------
+---------- Configuração do jogo ----------
 
+-- Penalidade
 mx_penalty: Mux4_1x8 port map(sel(1 downto 0), "11111110", "11111100", "11111010", "11111000", penalty);
+
+-- Memórias --
+
+-- ROM0
+
+memoria_0: ROM0 port map(X, saida_rom0);
+
+-- ROM1
+memoria_1: ROM1 port map(X, saida_rom1);
+
+-- ROM2
+memoria_2: ROM2 port map(X, saida_rom2);
+
+-- ROM3
+memoria_3: ROM3 port map(X, saida_rom3);
+
+-- Mux das memórias
 
 end arc_data;
