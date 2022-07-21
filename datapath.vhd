@@ -360,4 +360,8 @@ comparador_left: Comparador port map(play_left(7 downto 0), play_left(15 downto 
 -- Comparador direito
 comparador_right: Comparador port map(play_right(7 downto 0), play_right(15 downto 8), control_right);
 
+---------- Leitura das memórias ----------
+
+mx_penalty: Mux4_1x8 port map(sel(1 downto 0), "11111110", "11111100", "11111010", "11111000", penalty);
+
 end arc_data;
