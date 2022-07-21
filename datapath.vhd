@@ -162,7 +162,7 @@ end component Mux4_1x80;
 
 component Comparador is port(
     A, B: in std_logic_vector(7 downto 0);
-    Y:  out std_logic_vector(7 downto 0)
+    Y:  out std_logic
 );
 end component;
 
@@ -350,5 +350,14 @@ registrador_16bits_left: Registrador16 port map(CLK, R1, not_entl, SWleft, play_
 
 -- Registrador inferior direito
 registrador_16bits_right: Registrador16 port map(CLK, R1, not_entr, SWright, play_right);
+
+---------- Comparadores ----------
+
+-- Comparador esquerdo
+
+comparador_left: Comparador port map(play_left(7 downto 0), play_left(15 downto 8), control_left);
+
+-- Comparador direito
+comparador_right: Comparador port map(play_right(7 downto 0), play_right(15 downto 8), control_right);
 
 end arc_data;
