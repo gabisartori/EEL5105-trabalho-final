@@ -169,15 +169,15 @@ end component;
 
 component Registrador16 is port(
     CLK, RST, ENABLE: in std_logic;
-    valor_proximo: in std_logic_vector(15 downto 0);
-    valor: out std_logic_vector(15 downto 0)
+    D: in std_logic_vector(15 downto 0);
+    Q: out std_logic_vector(15 downto 0)
 );
 end component;
 
 component Registrador4 is port(
     CLK, RST, ENABLE: in std_logic;
-    valor_proximo: in std_logic_vector(3 downto 0);
-    valor: out std_logic_vector(3 downto 0)
+    D: in std_logic_vector(3 downto 0);
+    Q: out std_logic_vector(3 downto 0)
 );
 end component;
 
@@ -332,5 +332,23 @@ end_game <= end_time_left or end_time_right;
 
 ---------- Decoder termométrico ----------
 meu_decoder_termometrico: Decoder_termometrico port map(X, termo);
+
+---------- Registradores ----------
+
+-- Signals
+not_entl <= not enter_left;
+not_entr <= not enter_right;
+
+SWleft <= SW(17 downto 10) & S(79 downto 72);
+SWright <= SW(7 downto 0) & S(39 downto 32);
+
+-- Registrador superior esquerdo
+registrador_4bits_1: Registrador4 port map(CLK, R1, E1, SW(3 downto 0), sel);
+
+-- Registrador inferior esquerdo
+registrador_16bits_left: Registrador16 port map(CLK, R1, not_entl, SWleft, play_left);
+
+-- Registrador inferior direito
+registrador_16bits_right: Registrador16 port map(CLK, R1, not_entr, SWright, play_right);
 
 end arc_data;
