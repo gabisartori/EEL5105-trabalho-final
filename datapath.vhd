@@ -330,4 +330,7 @@ meu_contador_seq: ContadorSeq port map(R1, E2, CLK_1Hz, sel_cnt, end_sequence);
 ---------- Sinal de encerrar jogo ----------
 end_game <= end_time_left or end_time_right;
 
+---------- Decoder termométrico ----------
+meu_decoder_termometrico: Decoder_termometrico port map(X, termo);
+
 end arc_data;
