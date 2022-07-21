@@ -387,4 +387,8 @@ mx_memoria: Mux4_1x80 port map(sel(3 downto 2), saida_rom0, saida_rom1, saida_ro
 mx_seq_left: Mux4_1x8 port map(sel_cnt, S(47 downto 40), S(55 downto 48), S(63 downto 56), S(71 downto 64), seq_out_left);
 mx_seq_right: Mux4_1x8 port map(sel_cnt, S(7 downto 0), S(15 downto 8), S(23 downto 16), S(31 downto 24), seq_out_right);
 
+---------- Pisca ----------
+
+Pisca <= SIM_1Hz and "111111111";
+
 end arc_data;
