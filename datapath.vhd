@@ -313,4 +313,9 @@ mx_load_step_right: mux2_1x8 port map(E4, "11111111", mx_penalty_right_value, lo
 
 right_time_counter: ContadorTempo port map(R1, enable_right_time_counter, CLK, load_step_right, T_right_out, end_time_right);
 
+-- Saídas dos contadores
+
+conversor_left: DecBCD port map(T_left_out, T_left_BCD);
+conversor_right: DecBCD port map(T_right_out, T_right_BCD);
+
 end arc_data;
