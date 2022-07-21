@@ -289,10 +289,15 @@ end_right <= Enter_right; --mas no resto do projeto continuam sendo Enter_left e
 
 ------------------------------------ FAZER ----------------------------------------
 
+---------- Divisor de frequência ----------
+
+rst_divfreq <= E1 or E5;
+meu_divisor_emulador: Div_Freq_Emu port map(clk, rst_divfreq, CLK_1Hz, SIM_1Hz);
+
 ---------- Contadores ----------
 
 -- Contador de tempo da esquerda
-enable_left_time_counter <= E4 or (not enter_left and E3 and CLK);
+enable_left_time_counter <= E4 or (not enter_left and E3 and CLK_1Hz);
 
 mx_penalty_left: mux2_1x8 port map(Control_left, penalty, "00000000", mx_penalty_left_value);
 mx_load_step_left: mux2_1x8 port map(E4, "11111111", mx_penalty_left_value, load_step_left);
@@ -301,5 +306,11 @@ left_time_counter: ContadorTempo port map(R1, enable_left_time_counter, CLK, loa
 
 -- Contador de tempo da direita
 
+enable_right_time_counter <= E4 or (not enter_right and E3 and CLK_1Hz);
+
+mx_penalty_right: mux2_1x8 port map(Control_right, penalty, "00000000", mx_penalty_right_value);
+mx_load_step_right: mux2_1x8 port map(E4, "11111111", mx_penalty_right_value, load_step_right);
+
+right_time_counter: ContadorTempo port map(R1, enable_right_time_counter, CLK, load_step_right, T_right_out, end_time_right);
 
 end arc_data;
