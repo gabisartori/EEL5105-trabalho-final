@@ -326,4 +326,8 @@ meu_contador_round: ContadorRound port map(R1, E4, CLK, X, end_round);
 
 meu_contador_seq: ContadorSeq port map(R1, E2, CLK_1Hz, sel_cnt, end_sequence);
 
+
+---------- Sinal de encerrar jogo ----------
+end_game <= end_time_left or end_time_right;
+
 end arc_data;
