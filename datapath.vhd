@@ -322,4 +322,8 @@ conversor_right: DecBCD port map(T_right_out, T_right_BCD);
 
 meu_contador_round: ContadorRound port map(R1, E4, CLK, X, end_round);
 
+-- Contador de sequência
+
+meu_contador_seq: ContadorSeq port map(R1, E2, CLK_1Hz, sel_cnt, end_sequence);
+
 end arc_data;
