@@ -389,6 +389,6 @@ mx_seq_right: Mux4_1x8 port map(sel_cnt, S(7 downto 0), S(15 downto 8), S(23 dow
 
 ---------- Pisca ----------
 
-Pisca <= SIM_1Hz and "111111111";
+Pisca <= SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz & SIM_1Hz;
 
 end arc_data;
