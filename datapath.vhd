@@ -381,5 +381,6 @@ memoria_2: ROM2 port map(X, saida_rom2);
 memoria_3: ROM3 port map(X, saida_rom3);
 
 -- Mux das memórias
+mx_memoria: Mux4_1x80 port map(sel(3 downto 2), saida_rom0, saida_rom1, saida_rom2, saida_rom3, S);
 
 end arc_data;
