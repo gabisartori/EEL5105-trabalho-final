@@ -67,7 +67,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 E6 <= '0';
-                if (enter_left = '1' or enter_right = '1') then
+                if (enter_left = '1' and enter_right = '1') then
                     PROXIMO_ESTADO <= CHECK;
                 else
                     PROXIMO_ESTADO <= PLAY;
