@@ -91,7 +91,7 @@ begin
                 E6 <= '0';
                 if (end_round = '1' or end_game = '1') then
                     PROXIMO_ESTADO <= RESULT;
-                elsif (enter_left = '1' or enter_right = '1') then
+                elsif (enter = '1') then
                     PROXIMO_ESTADO <= SEQUENCE;
                 else
                     PROXIMO_ESTADO <= ESPERAR;
@@ -105,7 +105,7 @@ begin
                 E5 <= '0';
                 E6 <= '1';
                 if (enter = '1') then
-                    PROXIMO_ESTADO <= SETUP;
+                    PROXIMO_ESTADO <= INIT;
                 else
                     PROXIMO_ESTADO <= RESULT;
                 end if;
