@@ -9,7 +9,7 @@ port(
 end controlunit;
 
 architecture rtl of usertop is
-    type ESTADOS is ();
+    type ESTADOS is (INIT, SETUP, SEQUENCE, PLAY, CHECK, ESPERAR, RESULT);
     signal ESTADO, PROXIMO_ESTADO: ESTADOS;
 begin
     process(CLOCK, RESET)
@@ -25,15 +25,68 @@ begin
     begin
         case ESTADO is
             when INIT =>
-                S <= "11";
-                if (B = '1') then
-                    PROXIMO_ESTADO <= ON1;
-                else
-                    PROXIMO_ESTADO <= INIT;
-                end if;
-            when ON1 =>
-                S <= "01";
-                PROXIMO_ESTADO <= OFF1;           
+                R1 <= 1;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= SETUP;
+            when SETUP =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
+            when SEQUENCE =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
+            when PLAY =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
+            when CHECK =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
+            when ESPERAR =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
+            when RESULT =>
+                R1 <= 0;
+                E1 <= 0;
+                E2 <= 0;
+                E3 <= 0;
+                E4 <= 0;
+                E5 <= 0;
+                E6 <= 0;
+                PROXIMO_ESTADO <= ;
         end case;
     end process;
 end rtl;
