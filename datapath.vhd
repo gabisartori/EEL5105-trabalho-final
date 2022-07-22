@@ -42,7 +42,7 @@ signal left_penalty, right_penalty: std_logic_vector(7 downto 0);
 
 
 -- Meus signals
-signal enable_left_time_counter, enable_right_time_counter: std_logic;
+signal enable_left_time_counter, enable_right_time_counter, r1_or_e5: std_logic;
 signal load_step_left, load_step_right: std_logic_vector(7 downto 0);
 signal mx_penalty_left_value, mx_penalty_right_value: std_logic_vector(7 downto 0);
 ----- components
@@ -324,7 +324,8 @@ meu_contador_round: ContadorRound port map(R1, E4, CLK, X, end_round);
 
 -- Contador de sequência
 
-meu_contador_seq: ContadorSeq port map(R1, E2, CLK_1Hz, sel_cnt, end_sequence);
+r1_or_e5 <= R1 or E5;
+meu_contador_seq: ContadorSeq port map(r1_or_e5, E2, CLK_1Hz, sel_cnt, end_sequence);
 
 
 ---------- Sinal de encerrar jogo ----------
