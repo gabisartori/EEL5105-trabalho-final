@@ -41,9 +41,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 E6 <= '0';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                elsif (enter = '1') then
+                if (enter = '1') then
                     PROXIMO_ESTADO <= SEQUENCE;
                 else
                     PROXIMO_ESTADO <= SETUP;
@@ -56,9 +54,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 E6 <= '0';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                elsif (end_sequence = '1') then
+                if (end_sequence = '1') then
                     PROXIMO_ESTADO <= PLAY;
                 else
                     PROXIMO_ESTADO <= SEQUENCE;
@@ -71,9 +67,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 E6 <= '0';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                elsif (enter_left = '1' or enter_right = '1') then
+                if (enter_left = '1' or enter_right = '1') then
                     PROXIMO_ESTADO <= CHECK;
                 else
                     PROXIMO_ESTADO <= PLAY;
@@ -86,11 +80,7 @@ begin
                 E4 <= '1';
                 E5 <= '0';
                 E6 <= '0';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                else
-                    PROXIMO_ESTADO <= ESPERAR;
-                end if;
+                PROXIMO_ESTADO <= ESPERAR;
             when ESPERAR =>
                 R1 <= '0';
                 E1 <= '0';
@@ -99,9 +89,7 @@ begin
                 E4 <= '0';
                 E5 <= '1';
                 E6 <= '0';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                elsif (end_round = '1' or end_game = '1') then
+                if (end_round = '1' or end_game = '1') then
                     PROXIMO_ESTADO <= RESULT;
                 elsif (enter_left = '1' or enter_right = '1') then
                     PROXIMO_ESTADO <= SEQUENCE;
@@ -116,9 +104,7 @@ begin
                 E4 <= '0';
                 E5 <= '0';
                 E6 <= '1';
-                if (reset = '1') then
-                    PROXIMO_ESTADO <= INIT;
-                elsif (enter = '1') then
+                if (enter = '1') then
                     PROXIMO_ESTADO <= SETUP;
                 else
                     PROXIMO_ESTADO <= RESULT;
